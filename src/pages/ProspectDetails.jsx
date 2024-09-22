@@ -20,11 +20,23 @@ function ProspectDetails() {
     });
   };
 
-  const handleSubmit = () => {
-    // Submit data to the server or process it
-    console.log('Form Submitted:', { ...formData, ...prospectDetails });
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('/api/meetings/book', {
+        ...formData,
+        ...prospectDetails,
+      });
+  
+      if (response.status === 200) {
+        // Booking was successful, you can optionally fetch updated stats here
+        fetchMeetingStats();
+      } else {
+        console.error('Booking failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form', error);
+    }
   };
-
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl mb-4">Book Meeting - Step 2</h2>

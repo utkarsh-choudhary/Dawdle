@@ -14,7 +14,7 @@ function Layout() {
     <>
        <Header /> {/* Conditionally render Header */}
       <Outlet />
-      <Footer /> {/* Conditionally render Footer */}
+       {/* Conditionally render Footer */}
     </>
   );
 }
