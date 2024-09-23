@@ -22,7 +22,7 @@ function ProspectDetails() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('/api/meetings/book', {
+      const response = await axios.post('http://localhost:9000/api/example', {
         ...formData,
         ...prospectDetails,
       });
@@ -38,6 +38,7 @@ function ProspectDetails() {
     }
   };
   return (
+    
     <div className="container mx-auto p-4">
       <h2 className="text-2xl mb-4">Book Meeting - Step 2</h2>
 

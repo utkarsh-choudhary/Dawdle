@@ -19,7 +19,7 @@ function Dashboard() {
   const fetchMeetingStats = async () => {
     try {
       // Using axios to fetch meeting stats from the API
-      const response = await axios.get('/api/meetings/stats');
+      const response = await axios.get('http://localhost:9000/api/meetings/example');
       setMeetingStats(response.data);
     } catch (error) {
       console.error('Failed to fetch meeting stats', error);

@@ -38,43 +38,43 @@ function SignupPage() {
     setLoading(true);
     setError(null);
 
+    const { email, first_name, last_name, phone_number, company_name, designation } = formData;
+
     // Basic validation
-    const { email, first_name, last_name, phone_number } = formData;
-    if (!email || !first_name || !last_name || !phone_number || (showOrganizationFields && (!formData.company_name || !formData.designation))) {
+    if (!email || !first_name || !last_name || !phone_number || (showOrganizationFields && (!company_name || !designation))) {
       setLoading(false);
-      setError("All fields are required.");
+      setError('All required fields must be filled out.');
       return;
     }
 
-    // Prepare data for API
     const data = {
       email,
-      first_name, // Ensure this matches the backend
-      last_name,  // Ensure this matches the backend
+      first_name,
+      last_name,
       linkedIn: formData.linkedIn,
-      phone_number, // Ensure this matches the backend
+      phone_number,
       ...(showOrganizationFields && {
-        company_name: formData.company_name, // Ensure this matches the backend
-        designation: formData.designation,   // Ensure this matches the backend
+        company_name,
+        designation,
       }),
     };
 
     try {
       const response = await axios.post('http://localhost:9000/api/users/signup', data);
       if (response.data.success) {
-        alert('Registration successful!');
-        navigate('/login');
+        alert('Registration successful! Your account is pending activation.');
+        navigate('/login', { state: { message: 'Account is pending activation.' } });
       } else {
-        setError(response.data.message || "Registration failed. Please try again.");
+        setError(response.data.message || 'Registration failed. Please try again.');
       }
     } catch (err) {
-      console.error("Error during signup:", err); // Log the error for debugging
+      console.error('Error during signup:', err);
       if (err.response && err.response.status === 500) {
-        setError("Internal server error. Please try again later.");
+        setError('Internal server error. Please try again later.');
       } else if (err.response && err.response.status === 400) {
-        setError("Bad request. Please check the data you've entered.");
+        setError('Bad request. Please check the data you\'ve entered.');
       } else {
-        setError(err.response?.data?.message || "An error occurred. Please try again.");
+        setError(err.response?.data?.message || 'An error occurred. Please try again.');
       }
     } finally {
       setLoading(false);

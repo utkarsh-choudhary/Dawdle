@@ -53,7 +53,6 @@ const Login = () => {
 
       // Verify the OTP
       const { data: verifyResponse } = await axios.post("http://localhost:9000/api/users/verify", { email, code: otp });
-      console.log(verifyResponse);
       
       if (verifyResponse.success) {
         setOtpVerified(true);
@@ -62,7 +61,7 @@ const Login = () => {
         // Store the token in localStorage
         localStorage.setItem("token", verifyResponse.token);
 
-        // Navigate to the home page
+        // Navigate to the home page or activation route
         navigate("/home");
       } else {
         setError(verifyResponse.message || "Invalid OTP. Please try again.");
