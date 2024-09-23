@@ -30,7 +30,7 @@ function Dashboard() {
     <div className="flex flex-col items-center justify-center  bg-gray-100 p-4">
       <h2 className="text-3xl font-bold mb-8">Meeting Statistics</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-6xl">
-        <div className="bg-indigo-600 text-white p-6 rounded-lg shadow-lg text-center">
+        <div className="bg-indigo-500 text-white p-6 rounded-lg shadow-lg text-center">
           <h3 className="text-lg font-semibold">Meeting Requested</h3>
           <p className="text-3xl font-bold mt-2">{meetingStats.requested}</p>
         </div>
